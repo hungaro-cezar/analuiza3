@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha do Paciente - Alzheimer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f4f7fa;
+    }
+
+    /* Barra lateral */
+    .sidebar {
+      width: 250px;
+      background-color: #2f3e46;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+      position: fixed;
+      height: 100%;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.3em;
+      color: #dfe6e9;
+    }
+
+    .sidebar a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: #dfe6e9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s;
+      font-size: 1.05em;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #354f52;
+      color: #fff;
+    }
+
+    /* Conteúdo principal */
+    .main-content {
+      margin-left: 250px;
+      padding: 30px;
+      flex: 1;
+      background-color: #f4f7fa;
+    }
+
+    .section {
+      display: none;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    h1 {
+      color: #2f3e46;
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      color: #2f3e46;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    /* Estilo do vídeo */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Proporção 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra lateral -->
+  <div class="sidebar">
+    <h2>Ficha do Paciente</h2>
+    <a href="#" class="tab-link active" data-target="prontuario">🩺 Prontuário</a>
+    <a href="#" class="tab-link" data-target="preferencias">💡 Preferências</a>
+    <a href="#" class="tab-link" data-target="contatos">📞 Contatos</a>
+    <a href="#" class="tab-link" data-target="curta">🎬 Curta-Metragem</a>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="main-content">
+
+    <!-- Aba: Prontuário -->
+    <div id="prontuario" class="section active">
+      <h1>🩺 Prontuário Médico</h1>
+      <label>Nome do Paciente:</label>
+      <input type="text" placeholder="Ex: João da Silva" />
+
+      <label>Idade:</label>
+      <input type="number" placeholder="Ex: 72" />
+
+      <label>Diagnóstico:</label>
+      <textarea placeholder="Ex: Alzheimer em estágio inicial."></textarea>
+
+      <label>Medicamentos Atuais:</label>
+      <textarea placeholder="Liste aqui os medicamentos e horários."></textarea>
+
+      <label>Observações Médicas:</label>
+      <textarea placeholder="Ex: Paciente responde bem a atividades de memória."></textarea>
+    </div>
+
+    <!-- Aba: Preferências -->
+    <div id="preferencias" class="section">
+      <h1>💡 Preferências e Gostos Pessoais</h1>
+      <label>Comidas favoritas:</label>
+      <textarea placeholder="Ex: Frango grelhado, frutas cítricas, bolo de milho."></textarea>
+
+      <label>Atividades que o paciente gosta:</label>
+      <textarea placeholder="Ex: Caminhar pela manhã, ouvir música, jogar dominó."></textarea>
+
+      <label>Particularidades:</label>
+      <textarea placeholder="Ex: Prefere ambientes calmos e gosta de ouvir músicas antigas."></textarea>
+    </div>
+
+    <!-- Aba: Contatos -->
+    <div id="contatos" class="section">
+      <h1>📞 Contatos de Emergência</h1>
+      <label>Contato 1 (Familiar principal):</label>
+      <input type="text" placeholder="Nome completo" />
+      <label>Telefone:</label>
+      <input type="text" placeholder="(xx) xxxxx-xxxx" />
+      <label>Relação:</label>
+      <input type="text" placeholder="Ex: Filho, esposa, cuidador" />
+
+      <label>Contato 2 (Reserva):</label>
+      <input type="text" placeholder="Nome completo" />
+      <label>Telefone:</label>
+      <input type="text" placeholder="(xx) xxxxx-xxxx" />
+      <label>Relação:</label>
+      <input type="text" placeholder="Ex: Irmão, vizinho, amigo" />
+    </div>
+
+    <!-- Aba: Curta-Metragem -->
+    <div id="curta" class="section">
+      <h1>🎬 Curta-Metragem</h1>
+      <p>Assista abaixo ao curta-metragem relacionado ao paciente:</p>
+
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" 
+                title="Exemplo de Curta-Metragem"
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Controle das abas
+    const links = document.querySelectorAll('.tab-link');
+    const sections = document.querySelectorAll('.section');
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        // Remove ativo das abas
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+
+        // Mostra a seção correspondente
+        const target = link.getAttribute('data-target');
+        sections.forEach(sec => {
+          sec.classList.remove('active');
+          if (sec.id === target) sec.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
